@@ -43,4 +43,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings => 'Settings';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get dark => 'Dark';
+
+  @override
+  String get light => 'Light';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get hindi => 'Hindi';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get aboutCosmo => 'About Cosmo';
+
+  @override
+  String get apiSources => 'API Sources';
+
+  @override
+  String get creditsAndLicenses => 'Credits & Licenses';
 }

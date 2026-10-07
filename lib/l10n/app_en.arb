@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+
   "appName": "Cosmo",
   "exploreTheUniverse": "Explore the Universe",
   "goodEveningExplorer": "Good evening, Explorer 👋",
@@ -7,9 +8,23 @@
   "closeApproaches": "Close Approaches",
   "exploreMore": "Explore More",
   "viewAll": "View All",
+
   "home": "Home",
   "explore": "Explore",
   "asteroids": "Asteroids",
   "launches": "Launches",
-  "settings": "Settings"
+  "settings": "Settings",
+
+  "appearance": "Appearance",
+  "theme": "Theme",
+  "dark": "Dark",
+  "light": "Light",
+  "language": "Language",
+  "english": "English",
+  "hindi": "Hindi",
+
+  "about": "About",
+  "aboutCosmo": "About Cosmo",
+  "apiSources": "API Sources",
+  "creditsAndLicenses": "Credits & Licenses"
 }

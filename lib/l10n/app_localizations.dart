@@ -169,6 +169,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @hindi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi'**
+  String get hindi;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @aboutCosmo.
+  ///
+  /// In en, this message translates to:
+  /// **'About Cosmo'**
+  String get aboutCosmo;
+
+  /// No description provided for @apiSources.
+  ///
+  /// In en, this message translates to:
+  /// **'API Sources'**
+  String get apiSources;
+
+  /// No description provided for @creditsAndLicenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits & Licenses'**
+  String get creditsAndLicenses;
 }
 
 class _AppLocalizationsDelegate

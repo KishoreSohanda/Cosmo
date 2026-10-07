@@ -43,4 +43,37 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settings => 'सेटिंग्स';
+
+  @override
+  String get appearance => 'दिखावट';
+
+  @override
+  String get theme => 'थीम';
+
+  @override
+  String get dark => 'डार्क';
+
+  @override
+  String get light => 'लाइट';
+
+  @override
+  String get language => 'भाषा';
+
+  @override
+  String get english => 'अंग्रेज़ी';
+
+  @override
+  String get hindi => 'हिन्दी';
+
+  @override
+  String get about => 'अबाउट';
+
+  @override
+  String get aboutCosmo => 'कॉस्मो के बारे में';
+
+  @override
+  String get apiSources => 'API स्रोत';
+
+  @override
+  String get creditsAndLicenses => 'क्रेडिट और लाइसेंस';
 }

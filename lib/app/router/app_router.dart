@@ -1,3 +1,5 @@
+import 'package:cosmo/app/router/route_names.dart';
+import 'package:cosmo/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +18,8 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/home',
+                path: RoutePaths.home,
+                name: RouteNames.home,
                 builder: (context, state) =>
                     const PlaceholderScreen(title: 'Home'),
               ),
@@ -27,7 +30,8 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/explore',
+                path: RoutePaths.explore,
+                name: RouteNames.explore,
                 builder: (context, state) =>
                     const PlaceholderScreen(title: 'Explore'),
               ),
@@ -38,7 +42,8 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/asteroids',
+                path: RoutePaths.asteroids,
+                name: RouteNames.asteroids,
                 builder: (context, state) =>
                     const PlaceholderScreen(title: 'Asteroids'),
               ),
@@ -49,7 +54,8 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/launches',
+                path: RoutePaths.launches,
+                name: RouteNames.launches,
                 builder: (context, state) =>
                     const PlaceholderScreen(title: 'Launches'),
               ),
@@ -60,9 +66,9 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/settings',
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Settings'),
+                path: RoutePaths.settings,
+                name: RouteNames.settings,
+                builder: (context, state) => const SettingsPage(),
               ),
             ],
           ),
