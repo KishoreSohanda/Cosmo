@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../l10n/app_localizations.dart';
+
 class AppShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
@@ -15,36 +17,37 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: _onDestinationSelected,
-        destinations: const [
+        destinations: [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             selectedIcon: Icon(Icons.home),
-            label: 'Home',
+            label: l10n.home,
           ),
           NavigationDestination(
             icon: Icon(Icons.explore_outlined),
             selectedIcon: Icon(Icons.explore),
-            label: 'Explore',
+            label: l10n.explore,
           ),
           NavigationDestination(
             icon: Icon(Icons.public_outlined),
             selectedIcon: Icon(Icons.public),
-            label: 'Asteroids',
+            label: l10n.asteroids,
           ),
           NavigationDestination(
             icon: Icon(Icons.rocket_launch_outlined),
             selectedIcon: Icon(Icons.rocket_launch),
-            label: 'Launches',
+            label: l10n.launches,
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),
             selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
+            label: l10n.settings,
           ),
         ],
       ),
