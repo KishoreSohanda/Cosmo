@@ -76,4 +76,26 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get creditsAndLicenses => 'क्रेडिट और लाइसेंस';
+
+  @override
+  String get app => 'ऐप';
+
+  @override
+  String get version => 'वर्ज़न';
+
+  @override
+  String get astronomyPictureOfTheDay => 'दिन की खगोलीय तस्वीर';
+
+  @override
+  String get nasaImages => 'NASA इमेज';
+
+  @override
+  String get nasaImagesDescription =>
+      'NASA के अंतरिक्ष चित्रों का संग्रह देखें';
+
+  @override
+  String get exoplanets => 'एक्सोप्लैनेट';
+
+  @override
+  String get exoplanetsDescription => 'हमारे सौर मंडल से परे की दुनिया खोजें';
 }

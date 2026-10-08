@@ -9,7 +9,7 @@ class ThemeChanged extends AppSettingsEvent {
 }
 
 class LanguageChanged extends AppSettingsEvent {
-  final Locale locale;
+  final AppLanguage language;
 
-  LanguageChanged(this.locale);
+  LanguageChanged(this.language);
 }

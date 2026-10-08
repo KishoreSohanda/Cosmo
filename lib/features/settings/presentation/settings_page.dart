@@ -1,4 +1,5 @@
 import 'package:cosmo/core/widgets/divider.dart';
+import 'package:cosmo/features/settings/models/app_language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,6 +62,18 @@ class SettingsPage extends StatelessWidget {
               ],
             ),
           ),
+          32.verticalSpace,
+          Text(l10n.app, style: Theme.of(context).textTheme.titleMedium),
+          8.verticalSpace,
+          Card(
+            child: ListTile(
+              title: Text(l10n.version),
+              trailing: Text(
+                '1.0.0',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -96,19 +109,19 @@ class SettingsPage extends StatelessWidget {
     AppLocalizations l10n,
     AppSettingsBloc appSettingsBloc,
   ) {
-    return BlocSelector<AppSettingsBloc, AppSettingsState, Locale>(
-      selector: (state) => state.locale,
-      builder: (context, locale) {
+    return BlocSelector<AppSettingsBloc, AppSettingsState, AppLanguage>(
+      selector: (state) => state.language,
+      builder: (context, language) {
         return Card(
           child: ListTile(
             leading: const Icon(Icons.language),
             title: Text(l10n.language),
             subtitle: Text(
-              locale.languageCode == 'hi' ? l10n.hindi : l10n.english,
+              language == AppLanguage.hindi ? l10n.hindi : l10n.english,
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              _showLanguageSelector(context, l10n, locale, appSettingsBloc);
+              _showLanguageSelector(context, l10n, language, appSettingsBloc);
             },
           ),
         );
@@ -132,12 +145,10 @@ class SettingsPage extends StatelessWidget {
               ListTile(
                 title: Text(
                   l10n.theme,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              RadioListTile<ThemeMode>(
-                title: Text(l10n.dark),
-                value: ThemeMode.dark,
+              RadioGroup<ThemeMode>(
                 groupValue: currentTheme,
                 onChanged: (value) {
                   if (value == null) return;
@@ -146,18 +157,18 @@ class SettingsPage extends StatelessWidget {
 
                   Navigator.pop(bottomSheetContext);
                 },
-              ),
-              RadioListTile<ThemeMode>(
-                title: Text(l10n.light),
-                value: ThemeMode.light,
-                groupValue: currentTheme,
-                onChanged: (value) {
-                  if (value == null) return;
-
-                  appSettingsBloc.add(ThemeChanged(value));
-
-                  Navigator.pop(bottomSheetContext);
-                },
+                child: Column(
+                  children: [
+                    RadioListTile<ThemeMode>(
+                      title: Text(l10n.dark),
+                      value: ThemeMode.dark,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text(l10n.light),
+                      value: ThemeMode.light,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -169,7 +180,7 @@ class SettingsPage extends StatelessWidget {
   void _showLanguageSelector(
     BuildContext context,
     AppLocalizations l10n,
-    Locale currentLocale,
+    AppLanguage currentLanguage,
     AppSettingsBloc appSettingsBloc,
   ) {
     showModalBottomSheet(
@@ -182,13 +193,11 @@ class SettingsPage extends StatelessWidget {
               ListTile(
                 title: Text(
                   l10n.language,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              RadioListTile<Locale>(
-                title: Text(l10n.english),
-                value: const Locale('en'),
-                groupValue: currentLocale,
+              RadioGroup<AppLanguage>(
+                groupValue: currentLanguage,
                 onChanged: (value) {
                   if (value == null) return;
 
@@ -196,18 +205,18 @@ class SettingsPage extends StatelessWidget {
 
                   Navigator.pop(bottomSheetContext);
                 },
-              ),
-              RadioListTile<Locale>(
-                title: Text(l10n.hindi),
-                value: const Locale('hi'),
-                groupValue: currentLocale,
-                onChanged: (value) {
-                  if (value == null) return;
-
-                  appSettingsBloc.add(LanguageChanged(value));
-
-                  Navigator.pop(bottomSheetContext);
-                },
+                child: Column(
+                  children: [
+                    RadioListTile<AppLanguage>(
+                      title: Text(l10n.english),
+                      value: AppLanguage.english,
+                    ),
+                    RadioListTile<AppLanguage>(
+                      title: Text(l10n.hindi),
+                      value: AppLanguage.hindi,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -28,7 +28,7 @@ class CosmoApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: settingsState.themeMode,
 
-      locale: settingsState.locale,
+      locale: settingsState.language.locale,
 
       routerConfig: AppRouter.router,
 

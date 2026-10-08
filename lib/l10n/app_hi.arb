@@ -26,5 +26,13 @@
   "about": "अबाउट",
   "aboutCosmo": "कॉस्मो के बारे में",
   "apiSources": "API स्रोत",
-  "creditsAndLicenses": "क्रेडिट और लाइसेंस"
+  "creditsAndLicenses": "क्रेडिट और लाइसेंस",
+  "app": "ऐप",
+  "version": "वर्ज़न",
+  
+  "astronomyPictureOfTheDay": "दिन की खगोलीय तस्वीर",
+  "nasaImages": "NASA इमेज",
+  "nasaImagesDescription": "NASA के अंतरिक्ष चित्रों का संग्रह देखें",
+  "exoplanets": "एक्सोप्लैनेट",
+  "exoplanetsDescription": "हमारे सौर मंडल से परे की दुनिया खोजें"
 }

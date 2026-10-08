@@ -235,6 +235,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Credits & Licenses'**
   String get creditsAndLicenses;
+
+  /// No description provided for @app.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get app;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @astronomyPictureOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Astronomy Picture of the Day'**
+  String get astronomyPictureOfTheDay;
+
+  /// No description provided for @nasaImages.
+  ///
+  /// In en, this message translates to:
+  /// **'NASA Images'**
+  String get nasaImages;
+
+  /// No description provided for @nasaImagesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore NASA\'s collection of space imagery'**
+  String get nasaImagesDescription;
+
+  /// No description provided for @exoplanets.
+  ///
+  /// In en, this message translates to:
+  /// **'Exoplanets'**
+  String get exoplanets;
+
+  /// No description provided for @exoplanetsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover worlds beyond our solar system'**
+  String get exoplanetsDescription;
 }
 
 class _AppLocalizationsDelegate

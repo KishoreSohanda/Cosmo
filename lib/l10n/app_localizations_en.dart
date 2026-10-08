@@ -76,4 +76,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get creditsAndLicenses => 'Credits & Licenses';
+
+  @override
+  String get app => 'App';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get astronomyPictureOfTheDay => 'Astronomy Picture of the Day';
+
+  @override
+  String get nasaImages => 'NASA Images';
+
+  @override
+  String get nasaImagesDescription =>
+      'Explore NASA\'s collection of space imagery';
+
+  @override
+  String get exoplanets => 'Exoplanets';
+
+  @override
+  String get exoplanetsDescription => 'Discover worlds beyond our solar system';
 }

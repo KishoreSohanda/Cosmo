@@ -1,9 +1,13 @@
 import 'package:cosmo/app/router/route_names.dart';
+import 'package:cosmo/features/home/presentation/apod_details_page.dart';
+import 'package:cosmo/features/home/presentation/asteroid_details_page.dart';
+import 'package:cosmo/features/home/presentation/launch_details_page.dart';
 import 'package:cosmo/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../shell/app_shell.dart';
+import '../../features/home/presentation/home_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -20,8 +24,7 @@ class AppRouter {
               GoRoute(
                 path: RoutePaths.home,
                 name: RouteNames.home,
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Home'),
+                builder: (context, state) => const HomePage(),
               ),
             ],
           ),
@@ -75,7 +78,24 @@ class AppRouter {
         ],
       ),
 
-      // Detail pages will go here later.
+      // Detail / secondary pages
+      GoRoute(
+        path: RoutePaths.apodDetails,
+        name: RouteNames.apodDetails,
+        builder: (context, state) => const ApodDetailsPage(),
+      ),
+
+      GoRoute(
+        path: RoutePaths.launchDetails,
+        name: RouteNames.launchDetails,
+        builder: (context, state) => const LaunchDetailsPage(),
+      ),
+
+      GoRoute(
+        path: RoutePaths.asteroidDetails,
+        name: RouteNames.asteroidDetails,
+        builder: (context, state) => const AsteroidDetailsPage(),
+      ),
     ],
   );
 }

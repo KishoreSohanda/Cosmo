@@ -26,5 +26,13 @@
   "about": "About",
   "aboutCosmo": "About Cosmo",
   "apiSources": "API Sources",
-  "creditsAndLicenses": "Credits & Licenses"
+  "creditsAndLicenses": "Credits & Licenses",
+  "app": "App",
+  "version": "Version",
+
+  "astronomyPictureOfTheDay": "Astronomy Picture of the Day",
+  "nasaImages": "NASA Images",
+  "nasaImagesDescription": "Explore NASA's collection of space imagery",
+  "exoplanets": "Exoplanets",
+  "exoplanetsDescription": "Discover worlds beyond our solar system"
 }

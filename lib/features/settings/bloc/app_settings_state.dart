@@ -2,17 +2,17 @@ part of 'app_settings_bloc.dart';
 
 class AppSettingsState {
   final ThemeMode themeMode;
-  final Locale locale;
+  final AppLanguage language;
 
   const AppSettingsState({
     this.themeMode = ThemeMode.dark,
-    this.locale = const Locale('en'),
+    this.language = AppLanguage.english,
   });
 
-  AppSettingsState copyWith({ThemeMode? themeMode, Locale? locale}) {
+  AppSettingsState copyWith({ThemeMode? themeMode, AppLanguage? language}) {
     return AppSettingsState(
       themeMode: themeMode ?? this.themeMode,
-      locale: locale ?? this.locale,
+      language: language ?? this.language,
     );
   }
 }
