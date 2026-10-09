@@ -36,5 +36,8 @@
   "exoplanets": "एक्सोप्लैनेट",
   "exoplanetsDescription": "हमारे सौर मंडल से परे की दुनिया खोजें",
   "discoverTheUniverse": "ब्रह्मांड की खोज करें",
-  "exploreApodDescription": "रोज़ाना की खगोलीय तस्वीरों से ब्रह्मांड को जानें"
+  "exploreApodDescription": "रोज़ाना की खगोलीय तस्वीरों से ब्रह्मांड को जानें",
+  "upcoming": "आगामी",
+  "past": "पिछले",
+  "noLaunchesFound": "कोई लॉन्च उपलब्ध नहीं है।"
 }

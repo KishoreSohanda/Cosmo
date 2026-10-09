@@ -105,4 +105,13 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get exploreApodDescription =>
       'रोज़ाना की खगोलीय तस्वीरों से ब्रह्मांड को जानें';
+
+  @override
+  String get upcoming => 'आगामी';
+
+  @override
+  String get past => 'पिछले';
+
+  @override
+  String get noLaunchesFound => 'कोई लॉन्च उपलब्ध नहीं है।';
 }

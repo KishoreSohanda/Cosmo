@@ -36,5 +36,8 @@
   "exoplanets": "Exoplanets",
   "exoplanetsDescription": "Discover worlds beyond our solar system",
   "discoverTheUniverse": "Discover the Universe",
-  "exploreApodDescription": "Discover the universe through daily astronomy images"
+  "exploreApodDescription": "Discover the universe through daily astronomy images",
+  "upcoming": "Upcoming",
+  "past": "Past",
+  "noLaunchesFound": "No launches available."
 }

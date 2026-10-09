@@ -1,11 +1,13 @@
 import 'package:cosmo/app/router/route_names.dart';
 import 'package:cosmo/features/apod/presentation/apod_page.dart';
+import 'package:cosmo/features/asteroids/presentation/asteroids_page.dart';
 import 'package:cosmo/features/exoplanets/presentation/exoplanet_details_page.dart';
 import 'package:cosmo/features/exoplanets/presentation/exoplanets_page.dart';
 import 'package:cosmo/features/explore/presentation/explore_page.dart';
 import 'package:cosmo/features/apod/presentation/apod_details_page.dart';
 import 'package:cosmo/features/asteroids/presentation/asteroid_details_page.dart';
 import 'package:cosmo/features/launches/presentation/launch_details_page.dart';
+import 'package:cosmo/features/launches/presentation/launches_page.dart';
 import 'package:cosmo/features/nasa_images/presentation/nasa_image_details_page.dart';
 import 'package:cosmo/features/nasa_images/presentation/nasa_images_page.dart';
 import 'package:cosmo/features/settings/presentation/settings_page.dart';
@@ -41,7 +43,7 @@ class AppRouter {
               GoRoute(
                 path: RoutePaths.explore,
                 name: RouteNames.explore,
-                builder: (context, state) => ExplorePage(),
+                builder: (context, state) => const ExplorePage(),
               ),
             ],
           ),
@@ -52,8 +54,7 @@ class AppRouter {
               GoRoute(
                 path: RoutePaths.asteroids,
                 name: RouteNames.asteroids,
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Asteroids'),
+                builder: (context, state) => const AsteroidsPage(),
               ),
             ],
           ),
@@ -64,8 +65,7 @@ class AppRouter {
               GoRoute(
                 path: RoutePaths.launches,
                 name: RouteNames.launches,
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Launches'),
+                builder: (context, state) => const LaunchesPage(),
               ),
             ],
           ),

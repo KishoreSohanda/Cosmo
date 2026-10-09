@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/app_theme.dart';
 import '../../../core/animations/app_animations.dart';
-import '../../../core/extensions/spacing_extensions.dart';
 import '../../../l10n/app_localizations.dart';
 
 class NasaImagesPage extends StatelessWidget {

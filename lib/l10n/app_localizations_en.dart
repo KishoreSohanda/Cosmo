@@ -105,4 +105,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreApodDescription =>
       'Discover the universe through daily astronomy images';
+
+  @override
+  String get upcoming => 'Upcoming';
+
+  @override
+  String get past => 'Past';
+
+  @override
+  String get noLaunchesFound => 'No launches available.';
 }

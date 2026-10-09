@@ -289,6 +289,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discover the universe through daily astronomy images'**
   String get exploreApodDescription;
+
+  /// No description provided for @upcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get upcoming;
+
+  /// No description provided for @past.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get past;
+
+  /// No description provided for @noLaunchesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No launches available.'**
+  String get noLaunchesFound;
 }
 
 class _AppLocalizationsDelegate
