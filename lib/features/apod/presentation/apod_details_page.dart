@@ -1,3 +1,4 @@
+import 'package:cosmo/core/extensions/spacing_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_theme.dart';
@@ -64,12 +65,12 @@ class ApodDetailsPage extends StatelessWidget {
                       'The Complete Sharpless Catalog',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                    const SizedBox(height: AppTheme.spacing8),
+                    AppTheme.spacing8.verticalSpace,
                     Text(
                       'October 2, 2026',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    const SizedBox(height: AppTheme.spacing24),
+                    AppTheme.spacing24.verticalSpace,
                     Text(
                       'The Sharpless catalog contains 313 regions of ionized '
                       'interstellar gas in our galaxy. These emission nebulae '

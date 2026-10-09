@@ -1,7 +1,13 @@
 import 'package:cosmo/app/router/route_names.dart';
-import 'package:cosmo/features/home/presentation/apod_details_page.dart';
-import 'package:cosmo/features/home/presentation/asteroid_details_page.dart';
-import 'package:cosmo/features/home/presentation/launch_details_page.dart';
+import 'package:cosmo/features/apod/presentation/apod_page.dart';
+import 'package:cosmo/features/exoplanets/presentation/exoplanet_details_page.dart';
+import 'package:cosmo/features/exoplanets/presentation/exoplanets_page.dart';
+import 'package:cosmo/features/explore/presentation/explore_page.dart';
+import 'package:cosmo/features/apod/presentation/apod_details_page.dart';
+import 'package:cosmo/features/asteroids/presentation/asteroid_details_page.dart';
+import 'package:cosmo/features/launches/presentation/launch_details_page.dart';
+import 'package:cosmo/features/nasa_images/presentation/nasa_image_details_page.dart';
+import 'package:cosmo/features/nasa_images/presentation/nasa_images_page.dart';
 import 'package:cosmo/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -35,8 +41,7 @@ class AppRouter {
               GoRoute(
                 path: RoutePaths.explore,
                 name: RouteNames.explore,
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Explore'),
+                builder: (context, state) => ExplorePage(),
               ),
             ],
           ),
@@ -77,6 +82,22 @@ class AppRouter {
           ),
         ],
       ),
+      GoRoute(
+        path: RoutePaths.exoplanets,
+        name: RouteNames.exoplanets,
+        builder: (context, state) => const ExoplanetsPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.nasaImages,
+        name: RouteNames.nasaImages,
+        builder: (context, state) => const NasaImagesPage(),
+      ),
+
+      GoRoute(
+        path: RoutePaths.apod,
+        name: RouteNames.apod,
+        builder: (context, state) => const ApodPage(),
+      ),
 
       // Detail / secondary pages
       GoRoute(
@@ -95,6 +116,17 @@ class AppRouter {
         path: RoutePaths.asteroidDetails,
         name: RouteNames.asteroidDetails,
         builder: (context, state) => const AsteroidDetailsPage(),
+      ),
+
+      GoRoute(
+        path: RoutePaths.nasaImageDetails,
+        name: RouteNames.nasaImageDetails,
+        builder: (context, state) => const NasaImageDetailsPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.exoplanetDetails,
+        name: RouteNames.exoplanetDetails,
+        builder: (context, state) => const ExoplanetDetailsPage(),
       ),
     ],
   );

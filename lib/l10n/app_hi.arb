@@ -34,5 +34,7 @@
   "nasaImages": "NASA इमेज",
   "nasaImagesDescription": "NASA के अंतरिक्ष चित्रों का संग्रह देखें",
   "exoplanets": "एक्सोप्लैनेट",
-  "exoplanetsDescription": "हमारे सौर मंडल से परे की दुनिया खोजें"
+  "exoplanetsDescription": "हमारे सौर मंडल से परे की दुनिया खोजें",
+  "discoverTheUniverse": "ब्रह्मांड की खोज करें",
+  "exploreApodDescription": "रोज़ाना की खगोलीय तस्वीरों से ब्रह्मांड को जानें"
 }

@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
                     title: l10n.nasaImages,
                     description: l10n.nasaImagesDescription,
                     onTap: () {
-                      // TODO: Navigate to NASA Images.
+                      context.pushNamed(RouteNames.nasaImages);
                     },
                   ),
                 ),
@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
                     title: l10n.exoplanets,
                     description: l10n.exoplanetsDescription,
                     onTap: () {
-                      // TODO: Navigate to Exoplanets.
+                      context.pushNamed(RouteNames.exoplanets);
                     },
                   ),
                 ),

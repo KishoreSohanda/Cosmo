@@ -277,6 +277,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discover worlds beyond our solar system'**
   String get exoplanetsDescription;
+
+  /// No description provided for @discoverTheUniverse.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the Universe'**
+  String get discoverTheUniverse;
+
+  /// No description provided for @exploreApodDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the universe through daily astronomy images'**
+  String get exploreApodDescription;
 }
 
 class _AppLocalizationsDelegate

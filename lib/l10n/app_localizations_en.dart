@@ -98,4 +98,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exoplanetsDescription => 'Discover worlds beyond our solar system';
+
+  @override
+  String get discoverTheUniverse => 'Discover the Universe';
+
+  @override
+  String get exploreApodDescription =>
+      'Discover the universe through daily astronomy images';
 }

@@ -98,4 +98,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get exoplanetsDescription => 'हमारे सौर मंडल से परे की दुनिया खोजें';
+
+  @override
+  String get discoverTheUniverse => 'ब्रह्मांड की खोज करें';
+
+  @override
+  String get exploreApodDescription =>
+      'रोज़ाना की खगोलीय तस्वीरों से ब्रह्मांड को जानें';
 }
