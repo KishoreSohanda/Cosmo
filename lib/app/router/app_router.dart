@@ -1,4 +1,7 @@
 import 'package:cosmo/app/router/route_names.dart';
+import 'package:cosmo/features/apod/bloc/apod_bloc.dart';
+import 'package:cosmo/features/apod/bloc/apod_event.dart';
+import 'package:cosmo/features/apod/data/repositories/apod_repository.dart';
 import 'package:cosmo/features/apod/presentation/apod_page.dart';
 import 'package:cosmo/features/asteroids/presentation/asteroids_page.dart';
 import 'package:cosmo/features/exoplanets/presentation/exoplanet_details_page.dart';
@@ -12,6 +15,7 @@ import 'package:cosmo/features/nasa_images/presentation/nasa_image_details_page.
 import 'package:cosmo/features/nasa_images/presentation/nasa_images_page.dart';
 import 'package:cosmo/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../shell/app_shell.dart';
@@ -96,7 +100,14 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.apod,
         name: RouteNames.apod,
-        builder: (context, state) => const ApodPage(),
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) =>
+                ApodBloc(repository: ApodRepository())
+                  ..add(const ApodListRequested()),
+            child: const ApodPage(),
+          );
+        },
       ),
 
       // Detail / secondary pages

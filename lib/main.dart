@@ -1,3 +1,4 @@
+import 'package:cosmo/core/network/dio_client.dart';
 import 'package:cosmo/features/settings/bloc/app_settings_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,8 @@ import 'app/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioClient.initialize();
   runApp(
     BlocProvider(create: (_) => AppSettingsBloc(), child: const CosmoApp()),
   );
