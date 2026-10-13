@@ -1,14 +1,57 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmo/core/extensions/spacing_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_theme.dart';
 import '../../../core/animations/app_animations.dart';
+import '../data/models/apod_model.dart';
 
 class ApodDetailsPage extends StatelessWidget {
-  const ApodDetailsPage({super.key});
+  final ApodModel apod;
+
+  const ApodDetailsPage({required this.apod, super.key});
+
+  String _plainText(String html) {
+    return html
+        .replaceAll(RegExp(r'<br\s*/?>', caseSensitive: false), '\n')
+        .replaceAll(RegExp(r'</p\s*>', caseSensitive: false), '\n\n')
+        .replaceAll(RegExp(r'<[^>]*>'), '')
+        .replaceAll('&nbsp;', ' ')
+        .replaceAll('&amp;', '&')
+        .replaceAll('&quot;', '"')
+        .replaceAll('&#039;', "'")
+        .replaceAll('&#8217;', '’')
+        .replaceAll('&#8211;', '–')
+        .replaceAll('&#8212;', '—')
+        .trim();
+  }
+
+  String _formatDate(String date) {
+    final parsedDate = DateTime.tryParse(date);
+    if (parsedDate == null) return date;
+
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    return '${months[parsedDate.month - 1]} ${parsedDate.day}, ${parsedDate.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -19,11 +62,20 @@ class ApodDetailsPage extends StatelessWidget {
             foregroundColor: AppTheme.textPrimary,
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
-                tag: 'apod-featured-image',
-                child: Image.network(
-                  'https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/2026/october/sharpless_catalog.png?w=4455&h=5592&fit=clip&crop=faces%2Cfocalpoint',
+                tag: 'apod-${apod.date}',
+                child: CachedNetworkImage(
+                  imageUrl: apod.imageUrl,
+                  width: double.infinity,
+                  height: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
+                  placeholder: (context, url) {
+                    return Container(
+                      color: AppTheme.surface,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
                     return Container(
                       color: AppTheme.surface,
                       alignment: Alignment.center,
@@ -61,23 +113,26 @@ class ApodDetailsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'The Complete Sharpless Catalog',
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
+                    Text(apod.title, style: theme.textTheme.headlineLarge),
                     AppTheme.spacing8.verticalSpace,
                     Text(
-                      'October 2, 2026',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      _formatDate(apod.date),
+                      style: theme.textTheme.bodyMedium,
                     ),
                     AppTheme.spacing24.verticalSpace,
                     Text(
-                      'The Sharpless catalog contains 313 regions of ionized '
-                      'interstellar gas in our galaxy. These emission nebulae '
-                      'are illuminated by nearby hot stars and provide a '
-                      'beautiful view of the structure of the Milky Way.',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      _plainText(apod.explanation),
+                      style: theme.textTheme.bodyLarge,
                     ),
+                    if (apod.imageDescription?.isNotEmpty == true) ...[
+                      AppTheme.spacing24.verticalSpace,
+                      Text(
+                        apod.imageDescription!,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

@@ -4,21 +4,22 @@ import '../../../../core/network/api_endpoints.dart';
 import '../../../../core/network/dio_client.dart';
 import '../models/apod_model.dart';
 
+class ApodPageResult {
+  final List<ApodModel> apods;
+  final int totalPages;
+
+  const ApodPageResult({required this.apods, required this.totalPages});
+}
+
 class ApodRepository {
   final Dio _dio;
 
   ApodRepository({Dio? dio}) : _dio = dio ?? DioClient.instance;
 
-  Future<List<ApodModel>> fetchApodList({int days = 7}) async {
-    final endDate = DateTime.now().toUtc();
-    final startDate = endDate.subtract(Duration(days: days - 1));
-
+  Future<ApodPageResult> fetchApodList({int page = 1, int limit = 10}) async {
     final response = await _dio.get(
       '${ApiEndpoints.nasaBaseUrl}${ApiEndpoints.apod}',
-      queryParameters: {
-        'start_date': _formatDate(startDate),
-        'end_date': _formatDate(endDate),
-      },
+      queryParameters: {'per_page': limit, 'page': page},
     );
 
     final data = response.data;
@@ -27,33 +28,17 @@ class ApodRepository {
       throw const FormatException('Unexpected APOD API response format.');
     }
 
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(ApodModel.fromJson)
-        .toList()
-        .where((apod) => apod.mediaType == 'image')
-        .toList()
-      ..sort((a, b) => b.date.compareTo(a.date));
-  }
+    final apods =
+        data
+            .whereType<Map<String, dynamic>>()
+            .map(ApodModel.fromJson)
+            .where((apod) => apod.mediaType == 'image')
+            .toList()
+          ..sort((a, b) => b.date.compareTo(a.date));
 
-  Future<ApodModel> fetchApodByDate(String date) async {
-    final response = await _dio.get(
-      '${ApiEndpoints.nasaBaseUrl}${ApiEndpoints.apod}',
-      queryParameters: {'date': date},
-    );
+    final totalPages =
+        int.tryParse(response.headers.value('x-wp-totalpages') ?? '') ?? page;
 
-    if (response.data is! Map<String, dynamic>) {
-      throw const FormatException('Unexpected APOD detail response format.');
-    }
-
-    return ApodModel.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  String _formatDate(DateTime date) {
-    final year = date.year.toString().padLeft(4, '0');
-    final month = date.month.toString().padLeft(2, '0');
-    final day = date.day.toString().padLeft(2, '0');
-
-    return '$year-$month-$day';
+    return ApodPageResult(apods: apods, totalPages: totalPages);
   }
 }

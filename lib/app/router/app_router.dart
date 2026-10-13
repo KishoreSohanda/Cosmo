@@ -1,6 +1,7 @@
 import 'package:cosmo/app/router/route_names.dart';
 import 'package:cosmo/features/apod/bloc/apod_bloc.dart';
 import 'package:cosmo/features/apod/bloc/apod_event.dart';
+import 'package:cosmo/features/apod/data/models/apod_model.dart';
 import 'package:cosmo/features/apod/data/repositories/apod_repository.dart';
 import 'package:cosmo/features/apod/presentation/apod_page.dart';
 import 'package:cosmo/features/asteroids/presentation/asteroids_page.dart';
@@ -114,7 +115,10 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.apodDetails,
         name: RouteNames.apodDetails,
-        builder: (context, state) => const ApodDetailsPage(),
+        builder: (context, state) {
+          final apod = state.extra! as ApodModel;
+          return ApodDetailsPage(apod: apod);
+        },
       ),
 
       GoRoute(

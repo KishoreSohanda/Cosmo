@@ -114,4 +114,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noLaunchesFound => 'No launches available.';
+
+  @override
+  String get apodLoadError => 'Unable to load astronomy pictures.';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get noApodPictures => 'No astronomy pictures available.';
+
+  @override
+  String get viewDetails => 'View details';
 }

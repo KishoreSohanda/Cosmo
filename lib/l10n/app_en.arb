@@ -39,5 +39,9 @@
   "exploreApodDescription": "Discover the universe through daily astronomy images",
   "upcoming": "Upcoming",
   "past": "Past",
-  "noLaunchesFound": "No launches available."
+  "noLaunchesFound": "No launches available.",
+  "apodLoadError": "Unable to load astronomy pictures.",
+  "tryAgain": "Try again",
+  "noApodPictures": "No astronomy pictures available.",
+  "viewDetails": "View details"
 }

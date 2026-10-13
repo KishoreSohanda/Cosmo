@@ -114,4 +114,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noLaunchesFound => 'कोई लॉन्च उपलब्ध नहीं है।';
+
+  @override
+  String get apodLoadError => 'खगोलीय तस्वीरें लोड नहीं हो सकीं।';
+
+  @override
+  String get tryAgain => 'फिर से कोशिश करें';
+
+  @override
+  String get noApodPictures => 'कोई खगोलीय तस्वीर उपलब्ध नहीं है।';
+
+  @override
+  String get viewDetails => 'विवरण देखें';
 }

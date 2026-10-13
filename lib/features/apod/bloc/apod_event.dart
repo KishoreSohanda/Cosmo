@@ -10,3 +10,7 @@ abstract class ApodEvent extends Equatable {
 class ApodListRequested extends ApodEvent {
   const ApodListRequested();
 }
+
+class ApodNextPageRequested extends ApodEvent {
+  const ApodNextPageRequested();
+}

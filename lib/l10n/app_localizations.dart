@@ -307,6 +307,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No launches available.'**
   String get noLaunchesFound;
+
+  /// No description provided for @apodLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load astronomy pictures.'**
+  String get apodLoadError;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
+
+  /// No description provided for @noApodPictures.
+  ///
+  /// In en, this message translates to:
+  /// **'No astronomy pictures available.'**
+  String get noApodPictures;
+
+  /// No description provided for @viewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get viewDetails;
 }
 
 class _AppLocalizationsDelegate
