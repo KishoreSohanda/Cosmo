@@ -18,6 +18,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get goodEveningExplorer => 'शुभ संध्या, एक्सप्लोरर 👋';
 
   @override
+  String get goodAfternoonExplorer => 'शुभ दोपहर, एक्सप्लोरर 👋';
+
+  @override
+  String get goodMorningExplorer => 'शुभ प्रभात, एक्सप्लोरर 👋';
+
+  @override
   String get upcomingLaunches => 'आगामी लॉन्च';
 
   @override

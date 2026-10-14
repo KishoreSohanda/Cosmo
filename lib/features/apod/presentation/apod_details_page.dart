@@ -27,28 +27,6 @@ class ApodDetailsPage extends StatelessWidget {
         .trim();
   }
 
-  String _formatDate(String date) {
-    final parsedDate = DateTime.tryParse(date);
-    if (parsedDate == null) return date;
-
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    return '${months[parsedDate.month - 1]} ${parsedDate.day}, ${parsedDate.year}';
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

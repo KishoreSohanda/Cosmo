@@ -116,6 +116,18 @@ abstract class AppLocalizations {
   /// **'Good evening, Explorer 👋'**
   String get goodEveningExplorer;
 
+  /// No description provided for @goodAfternoonExplorer.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon, Explorer 👋'**
+  String get goodAfternoonExplorer;
+
+  /// No description provided for @goodMorningExplorer.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning, Explorer 👋'**
+  String get goodMorningExplorer;
+
   /// No description provided for @upcomingLaunches.
   ///
   /// In en, this message translates to:

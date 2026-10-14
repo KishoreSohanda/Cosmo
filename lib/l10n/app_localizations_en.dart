@@ -18,6 +18,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goodEveningExplorer => 'Good evening, Explorer 👋';
 
   @override
+  String get goodAfternoonExplorer => 'Good afternoon, Explorer 👋';
+
+  @override
+  String get goodMorningExplorer => 'Good morning, Explorer 👋';
+
+  @override
   String get upcomingLaunches => 'Upcoming Launches';
 
   @override

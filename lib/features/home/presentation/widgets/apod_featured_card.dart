@@ -3,12 +3,12 @@ import 'package:cosmo/app/router/route_names.dart';
 import 'package:cosmo/app/theme/app_theme.dart';
 import 'package:cosmo/core/animations/app_animations.dart';
 import 'package:cosmo/core/extensions/spacing_extensions.dart';
+import 'package:cosmo/core/utils/date_utils.dart';
 import 'package:cosmo/features/home/bloc/home_bloc.dart';
 import 'package:cosmo/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:cosmo/core/utils/date_utils.dart';
 
 class ApodFeaturedCard extends StatelessWidget {
   const ApodFeaturedCard({super.key});
