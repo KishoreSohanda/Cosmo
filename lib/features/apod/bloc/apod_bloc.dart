@@ -7,9 +7,7 @@ import 'apod_state.dart';
 class ApodBloc extends Bloc<ApodEvent, ApodState> {
   final ApodRepository _repository;
 
-  ApodBloc({required ApodRepository repository})
-    : _repository = repository,
-      super(const ApodState()) {
+  ApodBloc({required this._repository}) : super(const ApodState()) {
     on<ApodListRequested>(_onApodListRequested);
     on<ApodNextPageRequested>(_onApodNextPageRequested);
   }
