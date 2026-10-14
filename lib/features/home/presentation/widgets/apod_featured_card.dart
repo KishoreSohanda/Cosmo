@@ -8,6 +8,7 @@ import 'package:cosmo/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cosmo/core/utils/date_utils.dart';
 
 class ApodFeaturedCard extends StatelessWidget {
   const ApodFeaturedCard({super.key});
@@ -126,7 +127,12 @@ class ApodFeaturedCard extends StatelessWidget {
                                 ),
                                 6.verticalSpace,
                                 Text(
-                                  apod.date,
+                                  DateTimeUtils.formatDate(
+                                    apod.date,
+                                    locale: Localizations.localeOf(
+                                      context,
+                                    ).languageCode,
+                                  ),
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(color: Colors.white70),
                                 ),

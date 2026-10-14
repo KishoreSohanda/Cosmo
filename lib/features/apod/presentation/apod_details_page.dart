@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cosmo/core/extensions/spacing_extensions.dart';
+import 'package:cosmo/core/utils/date_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_theme.dart';
@@ -116,7 +117,10 @@ class ApodDetailsPage extends StatelessWidget {
                     Text(apod.title, style: theme.textTheme.headlineLarge),
                     AppTheme.spacing8.verticalSpace,
                     Text(
-                      _formatDate(apod.date),
+                      DateTimeUtils.formatDate(
+                        apod.date,
+                        locale: Localizations.localeOf(context).languageCode,
+                      ),
                       style: theme.textTheme.bodyMedium,
                     ),
                     AppTheme.spacing24.verticalSpace,

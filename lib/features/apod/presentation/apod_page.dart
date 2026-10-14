@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cosmo/core/utils/date_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -268,7 +269,13 @@ class _ApodCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(apod.date, style: theme.textTheme.labelMedium),
+                  Text(
+                    DateTimeUtils.formatDate(
+                      apod.date,
+                      locale: Localizations.localeOf(context).languageCode,
+                    ),
+                    style: theme.textTheme.labelMedium,
+                  ),
                   AppTheme.spacing8.verticalSpace,
                   Text(apod.title, style: theme.textTheme.titleMedium),
                   AppTheme.spacing8.verticalSpace,
