@@ -132,4 +132,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get viewDetails => 'View details';
+
+  @override
+  String get nasaImageLibrary => 'NASA Image Library';
+
+  @override
+  String get nasaImageDetailsAbout => 'About this image';
+
+  @override
+  String get nasaImageDetailsKeywords => 'Keywords';
+
+  @override
+  String get nasaImageDetailsImageInformation => 'Image information';
+
+  @override
+  String get nasaImageDetailsNasaId => 'NASA ID';
+
+  @override
+  String get nasaImageDetailsDateCreated => 'Date created';
+
+  @override
+  String get nasaImageDetailsNasaCenter => 'NASA center';
+
+  @override
+  String get nasaImageDetailsCreator => 'Creator';
+
+  @override
+  String get nasaImageDetailsPhotographer => 'Photographer';
+
+  @override
+  String get nasaImageDetailsDimensions => 'Dimensions';
+
+  @override
+  String get nasaImageDetailsFormat => 'Format';
+
+  @override
+  String get nasaImageDetailsFileSize => 'File size';
+
+  @override
+  String get nasaImageDetailsMegapixels => 'Megapixels';
+
+  @override
+  String get nasaImageDetailsAccessibleDescription => 'Accessible description';
 }

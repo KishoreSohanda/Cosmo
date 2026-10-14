@@ -45,5 +45,20 @@
   "apodLoadError": "Unable to load astronomy pictures.",
   "tryAgain": "Try again",
   "noApodPictures": "No astronomy pictures available.",
-  "viewDetails": "View details"
+  "viewDetails": "View details",
+
+  "nasaImageLibrary": "NASA Image Library",
+  "nasaImageDetailsAbout": "About this image",
+  "nasaImageDetailsKeywords": "Keywords",
+  "nasaImageDetailsImageInformation": "Image information",
+  "nasaImageDetailsNasaId": "NASA ID",
+  "nasaImageDetailsDateCreated": "Date created",
+  "nasaImageDetailsNasaCenter": "NASA center",
+  "nasaImageDetailsCreator": "Creator",
+  "nasaImageDetailsPhotographer": "Photographer",
+  "nasaImageDetailsDimensions": "Dimensions",
+  "nasaImageDetailsFormat": "Format",
+  "nasaImageDetailsFileSize": "File size",
+  "nasaImageDetailsMegapixels": "Megapixels",
+  "nasaImageDetailsAccessibleDescription": "Accessible description"
 }

@@ -12,6 +12,10 @@ import 'package:cosmo/features/apod/presentation/apod_details_page.dart';
 import 'package:cosmo/features/asteroids/presentation/asteroid_details_page.dart';
 import 'package:cosmo/features/launches/presentation/launch_details_page.dart';
 import 'package:cosmo/features/launches/presentation/launches_page.dart';
+import 'package:cosmo/features/nasa_images/bloc/nasa_images_bloc.dart';
+import 'package:cosmo/features/nasa_images/bloc/nasa_images_event.dart';
+import 'package:cosmo/features/nasa_images/data/models/nasa_image_model.dart';
+import 'package:cosmo/features/nasa_images/data/repositories/nasa_images_repository.dart';
 import 'package:cosmo/features/nasa_images/presentation/nasa_image_details_page.dart';
 import 'package:cosmo/features/nasa_images/presentation/nasa_images_page.dart';
 import 'package:cosmo/features/settings/presentation/settings_page.dart';
@@ -95,7 +99,12 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.nasaImages,
         name: RouteNames.nasaImages,
-        builder: (context, state) => const NasaImagesPage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              NasaImagesBloc(repository: NasaImagesRepository())
+                ..add(const NasaImagesRequested()),
+          child: const NasaImagesPage(),
+        ),
       ),
 
       GoRoute(
@@ -136,7 +145,16 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.nasaImageDetails,
         name: RouteNames.nasaImageDetails,
-        builder: (context, state) => const NasaImageDetailsPage(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          final image = extra['image'] as NasaImageModel;
+          final bloc = extra['bloc'] as NasaImagesBloc;
+
+          return BlocProvider.value(
+            value: bloc,
+            child: NasaImageDetailsPage(image: image),
+          );
+        },
       ),
       GoRoute(
         path: RoutePaths.exoplanetDetails,

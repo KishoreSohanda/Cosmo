@@ -343,6 +343,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View details'**
   String get viewDetails;
+
+  /// No description provided for @nasaImageLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'NASA Image Library'**
+  String get nasaImageLibrary;
+
+  /// No description provided for @nasaImageDetailsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About this image'**
+  String get nasaImageDetailsAbout;
+
+  /// No description provided for @nasaImageDetailsKeywords.
+  ///
+  /// In en, this message translates to:
+  /// **'Keywords'**
+  String get nasaImageDetailsKeywords;
+
+  /// No description provided for @nasaImageDetailsImageInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Image information'**
+  String get nasaImageDetailsImageInformation;
+
+  /// No description provided for @nasaImageDetailsNasaId.
+  ///
+  /// In en, this message translates to:
+  /// **'NASA ID'**
+  String get nasaImageDetailsNasaId;
+
+  /// No description provided for @nasaImageDetailsDateCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Date created'**
+  String get nasaImageDetailsDateCreated;
+
+  /// No description provided for @nasaImageDetailsNasaCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'NASA center'**
+  String get nasaImageDetailsNasaCenter;
+
+  /// No description provided for @nasaImageDetailsCreator.
+  ///
+  /// In en, this message translates to:
+  /// **'Creator'**
+  String get nasaImageDetailsCreator;
+
+  /// No description provided for @nasaImageDetailsPhotographer.
+  ///
+  /// In en, this message translates to:
+  /// **'Photographer'**
+  String get nasaImageDetailsPhotographer;
+
+  /// No description provided for @nasaImageDetailsDimensions.
+  ///
+  /// In en, this message translates to:
+  /// **'Dimensions'**
+  String get nasaImageDetailsDimensions;
+
+  /// No description provided for @nasaImageDetailsFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Format'**
+  String get nasaImageDetailsFormat;
+
+  /// No description provided for @nasaImageDetailsFileSize.
+  ///
+  /// In en, this message translates to:
+  /// **'File size'**
+  String get nasaImageDetailsFileSize;
+
+  /// No description provided for @nasaImageDetailsMegapixels.
+  ///
+  /// In en, this message translates to:
+  /// **'Megapixels'**
+  String get nasaImageDetailsMegapixels;
+
+  /// No description provided for @nasaImageDetailsAccessibleDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessible description'**
+  String get nasaImageDetailsAccessibleDescription;
 }
 
 class _AppLocalizationsDelegate

@@ -1,19 +1,35 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cosmo/core/utils/date_utils.dart';
+import 'package:cosmo/features/nasa_images/data/models/nasa_image_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_theme.dart';
 import '../../../core/animations/app_animations.dart';
 import '../../../core/extensions/spacing_extensions.dart';
+import '../../../l10n/app_localizations.dart';
 
 class NasaImageDetailsPage extends StatelessWidget {
-  const NasaImageDetailsPage({super.key});
+  final NasaImageModel image;
+
+  const NasaImageDetailsPage({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
-    const title = 'The Pillars of Creation';
-    const imageUrl =
-        'https://images-assets.nasa.gov/image/PIA20063/PIA20063~orig.jpg';
+    final details = <MapEntry<String, String>>[
+      MapEntry(
+        l10n.nasaImageDetailsDateCreated,
+        DateTimeUtils.formatDate(
+          image.dateCreated,
+          locale: Localizations.localeOf(context).languageCode,
+        ),
+      ),
+      MapEntry(l10n.nasaImageDetailsNasaCenter, image.center ?? ''),
+      MapEntry(l10n.nasaImageDetailsCreator, image.secondaryCreator ?? ''),
+      MapEntry(l10n.nasaImageDetailsPhotographer, image.photographer ?? ''),
+    ].where((item) => item.value.trim().isNotEmpty).toList();
 
     return Scaffold(
       body: CustomScrollView(
@@ -21,18 +37,8 @@ class NasaImageDetailsPage extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
-            title: const Text('Image Details'),
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return ColoredBox(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    child: const Icon(Icons.broken_image_outlined, size: 48),
-                  );
-                },
-              ),
+              background: _ImageHeader(image: image),
             ),
           ),
           SliverPadding(
@@ -52,42 +58,105 @@ class NasaImageDetailsPage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(title, style: theme.textTheme.headlineMedium),
+                  child: Text(
+                    image.title,
+                    style: theme.textTheme.headlineMedium,
+                  ),
                 ),
                 AppTheme.spacing12.verticalSpace,
                 Text(
-                  'NASA Image Library',
+                  l10n.nasaImageLibrary,
                   style: theme.textTheme.labelLarge?.copyWith(
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                AppTheme.spacing24.verticalSpace,
-                Text('About this image', style: theme.textTheme.titleLarge),
-                AppTheme.spacing8.verticalSpace,
-                Text(
-                  'Explore the beauty of the universe through this '
-                  'astronomical image. Discover the structures, stars, '
-                  'and cosmic dust that make space fascinating.',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    height: 1.6,
-                    color: theme.colorScheme.onSurfaceVariant,
+                if (image.description.trim().isNotEmpty) ...[
+                  AppTheme.spacing24.verticalSpace,
+                  Text(
+                    l10n.nasaImageDetailsAbout,
+                    style: theme.textTheme.titleLarge,
                   ),
-                ),
-                AppTheme.spacing24.verticalSpace,
-                Text('Image information', style: theme.textTheme.titleLarge),
-                AppTheme.spacing16.verticalSpace,
-                _InfoRow(label: 'Source', value: 'NASA'),
-                AppTheme.spacing12.verticalSpace,
-                _InfoRow(
-                  label: 'Collection',
-                  value: 'NASA Image and Video Library',
-                ),
+                  AppTheme.spacing8.verticalSpace,
+                  Text(
+                    image.description,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      height: 1.6,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+                if (image.keywords.isNotEmpty) ...[
+                  AppTheme.spacing24.verticalSpace,
+                  Text(
+                    l10n.nasaImageDetailsKeywords,
+                    style: theme.textTheme.titleLarge,
+                  ),
+                  AppTheme.spacing12.verticalSpace,
+                  Wrap(
+                    spacing: AppTheme.spacing8,
+                    runSpacing: AppTheme.spacing8,
+                    children: image.keywords
+                        .map((keyword) => Chip(label: Text(keyword)))
+                        .toList(),
+                  ),
+                ],
+                if (details.isNotEmpty) ...[
+                  AppTheme.spacing24.verticalSpace,
+                  Text(
+                    l10n.nasaImageDetailsImageInformation,
+                    style: theme.textTheme.titleLarge,
+                  ),
+                  AppTheme.spacing16.verticalSpace,
+                  ...details.map(
+                    (item) => Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: AppTheme.spacing12,
+                      ),
+                      child: _InfoRow(label: item.key, value: item.value),
+                    ),
+                  ),
+                ],
                 AppTheme.spacing24.verticalSpace,
               ]),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ImageHeader extends StatelessWidget {
+  final NasaImageModel image;
+
+  const _ImageHeader({required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final url = image.smallImageUrl.isNotEmpty
+        ? image.smallImageUrl
+        : image.mediumImageUrl.isNotEmpty
+        ? image.mediumImageUrl
+        : image.thumbnailUrl.isNotEmpty
+        ? image.thumbnailUrl
+        : image.originalImageUrl;
+
+    return ColoredBox(
+      color: theme.colorScheme.surfaceContainerHighest,
+      child: url.isEmpty
+          ? const Center(child: Icon(Icons.broken_image_outlined, size: 48))
+          : CachedNetworkImage(
+              imageUrl: url,
+              fit: BoxFit.cover,
+              fadeInDuration: AppAnimations.fast,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Center(
+                child: Icon(Icons.broken_image_outlined, size: 48),
+              ),
+            ),
     );
   }
 }
@@ -106,7 +175,7 @@ class _InfoRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 100,
+          width: 120,
           child: Text(
             label,
             style: theme.textTheme.bodyMedium?.copyWith(

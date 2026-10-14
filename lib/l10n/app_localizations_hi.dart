@@ -132,4 +132,46 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get viewDetails => 'विवरण देखें';
+
+  @override
+  String get nasaImageLibrary => 'नासा छवि पुस्तकालय';
+
+  @override
+  String get nasaImageDetailsAbout => 'इस छवि के बारे में';
+
+  @override
+  String get nasaImageDetailsKeywords => 'मुख्य शब्द';
+
+  @override
+  String get nasaImageDetailsImageInformation => 'छवि की जानकारी';
+
+  @override
+  String get nasaImageDetailsNasaId => 'नासा आईडी';
+
+  @override
+  String get nasaImageDetailsDateCreated => 'निर्माण तिथि';
+
+  @override
+  String get nasaImageDetailsNasaCenter => 'नासा केंद्र';
+
+  @override
+  String get nasaImageDetailsCreator => 'निर्माता';
+
+  @override
+  String get nasaImageDetailsPhotographer => 'फोटोग्राफर';
+
+  @override
+  String get nasaImageDetailsDimensions => 'आयाम';
+
+  @override
+  String get nasaImageDetailsFormat => 'फ़ॉर्मेट';
+
+  @override
+  String get nasaImageDetailsFileSize => 'फ़ाइल का आकार';
+
+  @override
+  String get nasaImageDetailsMegapixels => 'मेगापिक्सेल';
+
+  @override
+  String get nasaImageDetailsAccessibleDescription => 'सुलभ विवरण';
 }

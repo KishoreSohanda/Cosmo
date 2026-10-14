@@ -45,5 +45,20 @@
   "apodLoadError": "खगोलीय तस्वीरें लोड नहीं हो सकीं।",
   "tryAgain": "फिर से कोशिश करें",
   "noApodPictures": "कोई खगोलीय तस्वीर उपलब्ध नहीं है।",
-  "viewDetails": "विवरण देखें"
+  "viewDetails": "विवरण देखें",
+  
+  "nasaImageLibrary": "नासा छवि पुस्तकालय",
+  "nasaImageDetailsAbout": "इस छवि के बारे में",
+  "nasaImageDetailsKeywords": "मुख्य शब्द",
+  "nasaImageDetailsImageInformation": "छवि की जानकारी",
+  "nasaImageDetailsNasaId": "नासा आईडी",
+  "nasaImageDetailsDateCreated": "निर्माण तिथि",
+  "nasaImageDetailsNasaCenter": "नासा केंद्र",
+  "nasaImageDetailsCreator": "निर्माता",
+  "nasaImageDetailsPhotographer": "फोटोग्राफर",
+  "nasaImageDetailsDimensions": "आयाम",
+  "nasaImageDetailsFormat": "फ़ॉर्मेट",
+  "nasaImageDetailsFileSize": "फ़ाइल का आकार",
+  "nasaImageDetailsMegapixels": "मेगापिक्सेल",
+  "nasaImageDetailsAccessibleDescription": "सुलभ विवरण"
 }
