@@ -5,6 +5,10 @@ import 'package:cosmo/features/apod/data/models/apod_model.dart';
 import 'package:cosmo/features/apod/data/repositories/apod_repository.dart';
 import 'package:cosmo/features/apod/presentation/apod_page.dart';
 import 'package:cosmo/features/asteroids/presentation/asteroids_page.dart';
+import 'package:cosmo/features/exoplanets/bloc/exoplanet_bloc.dart';
+import 'package:cosmo/features/exoplanets/bloc/exoplanet_event.dart';
+import 'package:cosmo/features/exoplanets/data/models/exoplanet_model.dart';
+import 'package:cosmo/features/exoplanets/data/repositories/exoplanet_repository.dart';
 import 'package:cosmo/features/exoplanets/presentation/exoplanet_details_page.dart';
 import 'package:cosmo/features/exoplanets/presentation/exoplanets_page.dart';
 import 'package:cosmo/features/explore/presentation/explore_page.dart';
@@ -94,7 +98,12 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.exoplanets,
         name: RouteNames.exoplanets,
-        builder: (context, state) => const ExoplanetsPage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ExoplanetBloc(repository: ExoplanetRepository())
+                ..add(const ExoplanetsRequested()),
+          child: const ExoplanetsPage(),
+        ),
       ),
       GoRoute(
         path: RoutePaths.nasaImages,
@@ -159,7 +168,11 @@ class AppRouter {
       GoRoute(
         path: RoutePaths.exoplanetDetails,
         name: RouteNames.exoplanetDetails,
-        builder: (context, state) => const ExoplanetDetailsPage(),
+        builder: (context, state) {
+          final exoplanet = state.extra! as ExoplanetModel;
+
+          return ExoplanetDetailsPage(exoplanet: exoplanet);
+        },
       ),
     ],
   );

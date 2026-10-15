@@ -1,11 +1,16 @@
 import 'package:cosmo/app/router/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/app_theme.dart';
 import '../../../core/animations/app_animations.dart';
 import '../../../core/extensions/spacing_extensions.dart';
 import '../../../l10n/app_localizations.dart';
+import '../bloc/exoplanet_bloc.dart';
+import '../bloc/exoplanet_event.dart';
+import '../bloc/exoplanet_state.dart';
+import '../data/models/exoplanet_model.dart';
 
 class ExoplanetsPage extends StatelessWidget {
   const ExoplanetsPage({super.key});
@@ -15,112 +20,222 @@ class ExoplanetsPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
-    final planets = [
-      (
-        name: 'Proxima Centauri b',
-        type: 'Terrestrial',
-        distance: '4.24 light-years away',
-        description: 'A planet orbiting the closest star to our Solar System.',
-        color: const Color(0xFF4F8EF7),
-        icon: Icons.public,
-      ),
-      (
-        name: 'Kepler-186f',
-        type: 'Terrestrial',
-        distance: 'About 500 light-years away',
-        description:
-            'An Earth-sized planet orbiting within its star’s habitable zone.',
-        color: const Color(0xFF8B5CF6),
-        icon: Icons.language,
-      ),
-      (
-        name: '51 Pegasi b',
-        type: 'Hot Jupiter',
-        distance: 'About 50 light-years away',
-        description: 'A gas giant orbiting very close to its host star.',
-        color: const Color(0xFFF59E0B),
-        icon: Icons.blur_circular,
-      ),
-      (
-        name: 'TRAPPIST-1e',
-        type: 'Terrestrial',
-        distance: 'About 40 light-years away',
-        description: 'One of seven known planets orbiting the TRAPPIST-1 star.',
-        color: const Color(0xFF14B8A6),
-        icon: Icons.circle,
-      ),
-    ];
-
     return Scaffold(
       appBar: AppBar(title: Text(l10n.exoplanets)),
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppTheme.spacing20,
-                  AppTheme.spacing8,
-                  AppTheme.spacing20,
-                  AppTheme.spacing20,
+        child: BlocBuilder<ExoplanetBloc, ExoplanetState>(
+          builder: (context, state) {
+            if (state.status == ExoplanetStatus.loading ||
+                state.status == ExoplanetStatus.initial) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (state.status == ExoplanetStatus.failure &&
+                state.exoplanets.isEmpty) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppTheme.spacing20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.error_outline, size: 42),
+                      AppTheme.spacing12.verticalSpace,
+                      Text(
+                        state.errorMessage ?? 'Unable to load exoplanets.',
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                      AppTheme.spacing16.verticalSpace,
+                      FilledButton(
+                        onPressed: () {
+                          context.read<ExoplanetBloc>().add(
+                            const ExoplanetsRequested(),
+                          );
+                        },
+                        child: Text(l10n.tryAgain),
+                      ),
+                    ],
+                  ),
                 ),
+              );
+            }
+
+            final planets = state.exoplanets;
+
+            if (planets.isEmpty) {
+              return Center(
                 child: Text(
-                  l10n.exoplanetsDescription,
+                  'No exoplanets found.',
                   style: theme.textTheme.bodyMedium,
                 ),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppTheme.spacing20,
-              ),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final planet = planets[index];
+              );
+            }
 
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      bottom: index == planets.length - 1
-                          ? 0
-                          : AppTheme.spacing16,
-                    ),
-                    child: TweenAnimationBuilder<double>(
-                      key: ValueKey(planet.name),
-                      tween: Tween(begin: 0, end: 1),
-                      duration: AppAnimations.normal,
-                      curve: AppAnimations.standard,
-                      builder: (context, value, child) {
-                        return Opacity(
-                          opacity: value,
-                          child: Transform.translate(
-                            offset: Offset(0, 12 * (1 - value)),
-                            child: child,
-                          ),
-                        );
-                      },
-                      child: _ExoplanetCard(
-                        name: planet.name,
-                        type: planet.type,
-                        distance: planet.distance,
-                        description: planet.description,
-                        color: planet.color,
-                        icon: planet.icon,
-                        onTap: () {
-                          context.pushNamed(RouteNames.exoplanetDetails);
-                        },
+            return NotificationListener<ScrollNotification>(
+              onNotification: (notification) {
+                if (notification is ScrollUpdateNotification ||
+                    notification is ScrollEndNotification) {
+                  if (notification.metrics.extentAfter < 300 &&
+                      state.hasMore &&
+                      !state.isLoadingMore &&
+                      state.status == ExoplanetStatus.success) {
+                    context.read<ExoplanetBloc>().add(
+                      const MoreExoplanetsRequested(),
+                    );
+                  }
+                }
+
+                return false;
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppTheme.spacing20,
+                        AppTheme.spacing8,
+                        AppTheme.spacing20,
+                        AppTheme.spacing20,
+                      ),
+                      child: Text(
+                        l10n.exoplanetsDescription,
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ),
-                  );
-                }, childCount: planets.length),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppTheme.spacing20,
+                    ),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        final planet = planets[index];
+
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == planets.length - 1
+                                ? 0
+                                : AppTheme.spacing16,
+                          ),
+                          child: TweenAnimationBuilder<double>(
+                            key: ValueKey(planet.name),
+                            tween: Tween(begin: 0, end: 1),
+                            duration: AppAnimations.normal,
+                            curve: AppAnimations.standard,
+                            builder: (context, value, child) {
+                              return Opacity(
+                                opacity: value,
+                                child: Transform.translate(
+                                  offset: Offset(0, 12 * (1 - value)),
+                                  child: child,
+                                ),
+                              );
+                            },
+                            child: _ExoplanetCard(
+                              name: planet.name,
+                              type:
+                                  planet.discoveryMethod ??
+                                  'Discovery method unknown',
+                              distance: _formatDistance(planet),
+                              description: _formatPlanetFacts(planet),
+                              color: _planetColor(index),
+                              icon: Icons.public,
+                              onTap: () {
+                                context.pushNamed(
+                                  RouteNames.exoplanetDetails,
+                                  extra: planet,
+                                );
+                              },
+                            ),
+                          ),
+                        );
+                      }, childCount: planets.length),
+                    ),
+                  ),
+
+                  // Loading indicator for the next page.
+                  if (state.isLoadingMore)
+                    const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.all(AppTheme.spacing24),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                    ),
+
+                  // Retry option if loading more planets fails.
+                  if (!state.isLoadingMore &&
+                      state.errorMessage != null &&
+                      planets.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppTheme.spacing20),
+                        child: Column(
+                          children: [
+                            Text(
+                              state.errorMessage!,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                            AppTheme.spacing12.verticalSpace,
+                            OutlinedButton(
+                              onPressed: () {
+                                context.read<ExoplanetBloc>().add(
+                                  const MoreExoplanetsRequested(),
+                                );
+                              },
+                              child: Text(l10n.tryAgain),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: AppTheme.spacing24),
+                  ),
+                ],
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: AppTheme.spacing24),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
+  }
+
+  static String _formatDistance(ExoplanetModel planet) {
+    final distance = planet.distanceLightYears;
+
+    if (distance == null) return 'Distance unavailable';
+
+    return '${distance.toStringAsFixed(2)} light-years away';
+  }
+
+  static String _formatPlanetFacts(ExoplanetModel planet) {
+    final facts = <String>[];
+
+    if (planet.radius != null) {
+      facts.add('Radius: ${planet.radius!.toStringAsFixed(2)} Earth radii');
+    }
+
+    if (planet.orbitalPeriod != null) {
+      facts.add(
+        'Orbital period: '
+        '${planet.orbitalPeriod!.toStringAsFixed(2)} days',
+      );
+    }
+
+    return facts.isEmpty ? 'Measurements unavailable' : facts.join(' · ');
+  }
+
+  static Color _planetColor(int index) {
+    const colors = [
+      Color(0xFF4F8EF7),
+      Color(0xFF8B5CF6),
+      Color(0xFFF59E0B),
+      Color(0xFF14B8A6),
+    ];
+
+    return colors[index % colors.length];
   }
 }
 
